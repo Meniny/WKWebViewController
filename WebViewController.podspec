@@ -6,6 +6,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => "MIT", :file => "LICENSE.md" }
   s.author           = 'Elias Abel'
   s.source           = { :git => "https://github.com/Meniny/WebViewController.git", :tag => s.version.to_s }
+  s.swift_version    = "4.0"
   s.social_media_url = 'https://meniny.cn/'
   s.source_files     = "WebViewController/**/*.swift"
   s.resources        = "WebViewController/Assets.xcassets"
