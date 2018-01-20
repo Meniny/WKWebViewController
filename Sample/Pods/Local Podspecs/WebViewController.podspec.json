@@ -1,0 +1,24 @@
+{
+  "name": "WebViewController",
+  "version": "1.0.0",
+  "summary": "An UIViewController with WKWebView inside.",
+  "homepage": "https://github.com/Meniny/WebViewController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE.md"
+  },
+  "authors": "Elias Abel",
+  "source": {
+    "git": "https://github.com/Meniny/WebViewController.git",
+    "tag": "1.0.0"
+  },
+  "social_media_url": "https://meniny.cn/",
+  "source_files": "WebViewController/**/*.swift",
+  "resources": "WebViewController/Assets.xcassets",
+  "requires_arc": true,
+  "platforms": {
+    "ios": "9.0"
+  },
+  "description": "WebViewController is an UIViewController with WKWebView inside.",
+  "module_name": "WebViewController"
+}

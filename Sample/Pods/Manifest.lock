@@ -1,0 +1,16 @@
+PODS:
+  - WebViewController (1.0.0)
+
+DEPENDENCIES:
+  - WebViewController (from `../`)
+
+EXTERNAL SOURCES:
+  WebViewController:
+    :path: ../
+
+SPEC CHECKSUMS:
+  WebViewController: ade99e3ef84b9bcb3300d4efa61ce4728b483c5c
+
+PODFILE CHECKSUM: ac39d74b3de2bb12bcda20337dfc84cba4fe1fe7
+
+COCOAPODS: 1.4.0
