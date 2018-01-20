@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double WebViewControllerVersionNumber;
-FOUNDATION_EXPORT const unsigned char WebViewControllerVersionString[];
+FOUNDATION_EXPORT double WKWebViewControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char WKWebViewControllerVersionString[];
 

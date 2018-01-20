@@ -1,0 +1,6 @@
+framework module WKWebViewController {
+  umbrella header "WKWebViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

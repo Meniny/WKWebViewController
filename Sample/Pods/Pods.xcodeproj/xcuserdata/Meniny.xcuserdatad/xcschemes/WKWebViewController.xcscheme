@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '81AB3EA499235D39C6244928C69B9BE2'
-               BlueprintName = 'WebViewController'
+               BlueprintIdentifier = '4D48BD689E2568458A8B5F22B4A333E4'
+               BlueprintName = 'WKWebViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'WebViewController.framework'>
+               BuildableName = 'WKWebViewController.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -1,5 +1,5 @@
 //
-//  WebViewController.swift
+//  WKWebViewController.swift
 //  Sample
 //
 //  Created by Meniny on 2018-01-20.
@@ -19,16 +19,16 @@ fileprivate struct UrlsHandledByApp {
     public static var blank = true
 }
 
-@objc public protocol WebViewControllerDelegate {
-    @objc optional func webViewController(_ controller: WebViewController, canDismiss url: URL) -> Bool
+@objc public protocol WKWebViewControllerDelegate {
+    @objc optional func webViewController(_ controller: WKWebViewController, canDismiss url: URL) -> Bool
     
-    @objc optional func webViewController(_ controller: WebViewController, didStart url: URL)
-    @objc optional func webViewController(_ controller: WebViewController, didFinish url: URL)
-    @objc optional func webViewController(_ controller: WebViewController, didFail url: URL, withError error: Error)
-    @objc optional func webViewController(_ controller: WebViewController, decidePolicy url: URL, navigationType: NavigationType) -> Bool
+    @objc optional func webViewController(_ controller: WKWebViewController, didStart url: URL)
+    @objc optional func webViewController(_ controller: WKWebViewController, didFinish url: URL)
+    @objc optional func webViewController(_ controller: WKWebViewController, didFail url: URL, withError error: Error)
+    @objc optional func webViewController(_ controller: WKWebViewController, decidePolicy url: URL, navigationType: NavigationType) -> Bool
 }
 
-open class WebViewController: UIViewController {
+open class WKWebViewController: UIViewController {
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -40,7 +40,7 @@ open class WebViewController: UIViewController {
 
     open var url: URL?
     open var tintColor: UIColor?
-    open var delegate: WebViewControllerDelegate?
+    open var delegate: WKWebViewControllerDelegate?
     open var bypassedSSLHosts: [String]?
     open var cookies: [HTTPCookie]?
     open var headers: [String: String]?
@@ -77,12 +77,12 @@ open class WebViewController: UIViewController {
     lazy fileprivate var originalUserAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")
 
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
-        let bundle = Bundle(for: WebViewController.self)
+        let bundle = Bundle(for: WKWebViewController.self)
         return UIBarButtonItem(image: UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
     }()
     
     lazy fileprivate var forwardBarButtonItem: UIBarButtonItem = {
-        let bundle = Bundle(for: WebViewController.self)
+        let bundle = Bundle(for: WKWebViewController.self)
         return UIBarButtonItem(image: UIImage(named: "Forward", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(forwardDidClick(sender:)))
     }()
     
@@ -197,7 +197,7 @@ open class WebViewController: UIViewController {
 }
 
 // MARK: - Public Methods
-public extension WebViewController {
+public extension WKWebViewController {
     func load(_ url: URL) {
         webView?.load(createRequest(url: url))
     }
@@ -210,7 +210,7 @@ public extension WebViewController {
 }
 
 // MARK: - Fileprivate Methods
-fileprivate extension WebViewController {
+fileprivate extension WKWebViewController {
     var availableCookies: [HTTPCookie]? {
         return cookies?.filter {
             cookie in
@@ -468,12 +468,12 @@ fileprivate extension WebViewController {
 }
 
 // MARK: - WKUIDelegate
-extension WebViewController: WKUIDelegate {
+extension WKWebViewController: WKUIDelegate {
     
 }
 
 // MARK: - WKNavigationDelegate
-extension WebViewController: WKNavigationDelegate {
+extension WKWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         updateBarButtonItems()
         updateProgressViewFrame()

@@ -1,6 +1,0 @@
-framework module WebViewController {
-  umbrella header "WebViewController-umbrella.h"
-
-  export *
-  module * { export * }
-}

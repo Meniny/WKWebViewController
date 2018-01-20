@@ -134,10 +134,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/WebViewController/WebViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WKWebViewController/WKWebViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/WebViewController/WebViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WKWebViewController/WKWebViewController.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

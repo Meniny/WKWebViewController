@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import WebViewController
+import WebKit
+import WKWebViewController
 
 class ViewController: UIViewController {
 
@@ -19,10 +20,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func presentWeb(_ sender: UIButton) {
-        let webViewController = WebViewController.init()
+        let webViewController = WKWebViewController.init()
         webViewController.url = url
         webViewController.bypassedSSLHosts = [url.host!]
-        webViewController.userAgent = "WebViewController/1.0.0"
+        webViewController.userAgent = "WKWebViewController/1.0.0"
         webViewController.websiteTitleInNavigationBar = false
         webViewController.navigationItem.title = "Elias's Cave"
         webViewController.leftNavigaionBarItemTypes = [.reload]
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showWeb(_ sender: UIButton) {
-        let webViewController = WebViewController.init()
+        let webViewController = WKWebViewController.init()
         webViewController.url = url
         webViewController.headers = ["browser": "in-app browser"]
         webViewController.tintColor = .red

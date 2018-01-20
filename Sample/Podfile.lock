@@ -1,16 +1,16 @@
 PODS:
-  - WebViewController (1.0.0)
+  - WKWebViewController (1.0.0)
 
 DEPENDENCIES:
-  - WebViewController (from `../`)
+  - WKWebViewController (from `../`)
 
 EXTERNAL SOURCES:
-  WebViewController:
+  WKWebViewController:
     :path: ../
 
 SPEC CHECKSUMS:
-  WebViewController: ade99e3ef84b9bcb3300d4efa61ce4728b483c5c
+  WKWebViewController: 6335d5b4e4027dbc6bb904b95a9a1cd5165c2c3e
 
-PODFILE CHECKSUM: ac39d74b3de2bb12bcda20337dfc84cba4fe1fe7
+PODFILE CHECKSUM: 062c96d656d3cc60990854068817a19657ddbf24
 
 COCOAPODS: 1.4.0
