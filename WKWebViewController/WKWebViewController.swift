@@ -44,6 +44,15 @@ open class WKWebViewController: UIViewController {
     open var bypassedSSLHosts: [String]?
     open var cookies: [HTTPCookie]?
     open var headers: [String: String]?
+    internal var customUserAgent: String? {
+        didSet {
+            guard let agent = userAgent else {
+                return
+            }
+            webView?.customUserAgent = agent
+        }
+    }
+    
     open var userAgent: String? {
         didSet {
             guard let originalUserAgent = originalUserAgent, let userAgent = userAgent else {
@@ -135,7 +144,8 @@ open class WKWebViewController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        self.webView?.customUserAgent = self.customUserAgent ?? self.userAgent ?? self.originalUserAgent
+        
         navigationItem.title = navigationItem.title ?? url?.absoluteString
         
         if let navigationController = navigationController {
