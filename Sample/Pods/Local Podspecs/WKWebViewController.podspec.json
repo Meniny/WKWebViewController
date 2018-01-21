@@ -1,6 +1,6 @@
 {
   "name": "WKWebViewController",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "An UIViewController with WKWebView inside.",
   "homepage": "https://github.com/Meniny/WKWebViewController",
   "license": {
@@ -10,7 +10,7 @@
   "authors": "Elias Abel",
   "source": {
     "git": "https://github.com/Meniny/WKWebViewController.git",
-    "tag": "1.0.0"
+    "tag": "1.0.1"
   },
   "swift_version": "4.0",
   "social_media_url": "https://meniny.cn/",

@@ -148,8 +148,7 @@ open class WKWebViewController: UIViewController {
         
         if let url = url {
             load(url)
-        }
-        else {
+        } else {
             print("[\(type(of: self))][Error] Invalid url:", url as Any)
         }
     }
@@ -523,7 +522,13 @@ extension WKWebViewController: WKNavigationDelegate {
         defer {
             decisionHandler(actionPolicy)
         }
-        guard let url = navigationAction.request.url, !url.isFileURL else {
+        guard let url = navigationAction.request.url else {
+            print("Cannot handle empty URLs")
+            return
+        }
+        
+        guard !url.isFileURL else {
+            print("Cannot handle file URLs")
             return
         }
    

@@ -3,19 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DC16ECD07AB47147D5242858A31DFF5 /* WKWebViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7986B73E36F500F4A80DC44D41C1495 /* WKWebViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3341E089D9C454B60960AB3E104089F7 /* WKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4BC3A55E318FCC86057F50FDF6DF6 /* WKWebViewController.swift */; };
+		0DC16ECD07AB47147D5242858A31DFF5 /* WKWebViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A4D16D12946D52E609E29DA9D3F029B8 /* WKWebViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1544837EA344B962B78091B2BFDBD30C /* WKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2388C544CB202BC7B0F623B56DDB5794 /* WKWebViewController.swift */; };
 		3F1AB3C054727E6C5BB02D7202B0F0DC /* Pods-Sample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 630DD76D417453483F37DBAE838D5518 /* Pods-Sample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40BEB819422F0F2F167FD8F1D6A06D58 /* Pods-Sample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF50723EE695E440CDA214119EF2C70 /* Pods-Sample-dummy.m */; };
-		4732DE73843360D8F7932F81BEAC0092 /* WKWebViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13909CD881012BF14101AB1F94664C00 /* WKWebViewController-dummy.m */; };
-		7CBE0091EC6D8EDE7C2C2D7DB3DBD2EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D044D819F4EE3E22B41FEA75A41A26D4 /* Assets.xcassets */; };
+		49FBB5780A965E370E111283279EC5CE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E48246CB2006EBF1A05E39723D6145 /* Enums.swift */; };
+		7CBE0091EC6D8EDE7C2C2D7DB3DBD2EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B561BCCDB925E3DA813D913557C56 /* Assets.xcassets */; };
 		85BF573EB199DE271F52A51CCE12E51B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		86858246DCE0DD8D8769BA302E79CE98 /* WKWebViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5493189B9065BE844032B2B309D32F /* WKWebViewController-dummy.m */; };
 		C983CBC0184813521947C2C7FD40D759 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		F4E76F201C6774FD80C5991D74E83A0A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9DC1F880E45249B1F440435991745A /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,32 +29,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F7183771AEA03EF670BCBB2895D675E /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		1076F90E0F95EABBE37C87D6E509E4BF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13909CD881012BF14101AB1F94664C00 /* WKWebViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewController-dummy.m"; sourceTree = "<group>"; };
+		0255A6D2A6BF9B29707918CAB7DC3FBC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		05A83A706A61FE1AA68A6CFD05CA0318 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
+		0900F36F0D9ABC0EAB0A887685B8BCDC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F1B561BCCDB925E3DA813D913557C56 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WKWebViewController/Assets.xcassets; sourceTree = "<group>"; };
 		161FD1626938094EEC6BF57530EDB6DA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17E6742D6415CCE6CCECF09C9CF28372 /* WKWebViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = WKWebViewController.modulemap; sourceTree = "<group>"; };
+		2388C544CB202BC7B0F623B56DDB5794 /* WKWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WKWebViewController.swift; path = WKWebViewController/WKWebViewController.swift; sourceTree = "<group>"; };
 		2FDF78216A41DB691C5960FEE69EB9FD /* Pods-Sample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sample-resources.sh"; sourceTree = "<group>"; };
+		361F7CCEF36FCD34DE5177B874EBABA9 /* WKWebViewController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = WKWebViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3AE375A74D27FC41E7BB6C006DFC76A6 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
-		3B9DC1F880E45249B1F440435991745A /* Enums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enums.swift; path = WKWebViewController/Enums.swift; sourceTree = "<group>"; };
-		45163A63C863193AD7ACC29F9BD6A2A3 /* WKWebViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WKWebViewController-prefix.pch"; sourceTree = "<group>"; };
+		3F5493189B9065BE844032B2B309D32F /* WKWebViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewController-dummy.m"; sourceTree = "<group>"; };
 		4AF50723EE695E440CDA214119EF2C70 /* Pods-Sample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Sample-dummy.m"; sourceTree = "<group>"; };
+		5734CDC3A01379BED7416DCADB06764F /* WKWebViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = WKWebViewController.modulemap; sourceTree = "<group>"; };
 		630DD76D417453483F37DBAE838D5518 /* Pods-Sample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Sample-umbrella.h"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6D65DC53E876D33B73CCFEE44C379EE1 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
-		735E5204C40E887244F2B75BCCDF2572 /* Pods-Sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Sample.modulemap"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		735E5204C40E887244F2B75BCCDF2572 /* Pods-Sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Sample.modulemap"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C896AB03AD02637A2108FF27D207683 /* Pods-Sample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sample-frameworks.sh"; sourceTree = "<group>"; };
-		A1B781108751A73E80FE208B4810A87F /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0E48246CB2006EBF1A05E39723D6145 /* Enums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enums.swift; path = WKWebViewController/Enums.swift; sourceTree = "<group>"; };
+		A1B781108751A73E80FE208B4810A87F /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Sample.framework; path = "Pods-Sample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A21D9B3C2775E7C503E601A5737980FB /* Pods-Sample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A4D16D12946D52E609E29DA9D3F029B8 /* WKWebViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WKWebViewController-umbrella.h"; sourceTree = "<group>"; };
 		A4F67C9E66E8D9E97F11042B162517EB /* Pods-Sample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sample-acknowledgements.plist"; sourceTree = "<group>"; };
-		AB1C2447CC63209E46A5BF9165D1EF18 /* WKWebViewController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = WKWebViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BF13E679BFB2D8448502836186D78F89 /* WKWebViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WKWebViewController.xcconfig; sourceTree = "<group>"; };
-		C0516BC378285C94F9FC444045CCA0EB /* WKWebViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WKWebViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D044D819F4EE3E22B41FEA75A41A26D4 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WKWebViewController/Assets.xcassets; sourceTree = "<group>"; };
-		DD707292B726D82AD721478EC7078C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E1D4BC3A55E318FCC86057F50FDF6DF6 /* WKWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WKWebViewController.swift; path = WKWebViewController/WKWebViewController.swift; sourceTree = "<group>"; };
-		E7986B73E36F500F4A80DC44D41C1495 /* WKWebViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WKWebViewController-umbrella.h"; sourceTree = "<group>"; };
+		C0516BC378285C94F9FC444045CCA0EB /* WKWebViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WKWebViewController.framework; path = WKWebViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF04A4BE6FF90BA1FCB60F479AA350B /* WKWebViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WKWebViewController-prefix.pch"; sourceTree = "<group>"; };
+		EF6C0C2267BBE00F203B00E92A35E41E /* WKWebViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WKWebViewController.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,32 +77,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C1B62A44E2791D895AACAFECB975E6E /* Development Pods */ = {
+		01B2BD636A8061C8EA9D37C13480A346 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				244078177FA86767BB759B98BDAFEB73 /* WKWebViewController */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		1542909CE14CD1528178A9943F0A69B8 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				0F7183771AEA03EF670BCBB2895D675E /* LICENSE.md */,
-				DD707292B726D82AD721478EC7078C1B /* README.md */,
-				AB1C2447CC63209E46A5BF9165D1EF18 /* WKWebViewController.podspec */,
+				05A83A706A61FE1AA68A6CFD05CA0318 /* LICENSE.md */,
+				0255A6D2A6BF9B29707918CAB7DC3FBC /* README.md */,
+				361F7CCEF36FCD34DE5177B874EBABA9 /* WKWebViewController.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		244078177FA86767BB759B98BDAFEB73 /* WKWebViewController */ = {
+		0C1B62A44E2791D895AACAFECB975E6E /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B9DC1F880E45249B1F440435991745A /* Enums.swift */,
-				E1D4BC3A55E318FCC86057F50FDF6DF6 /* WKWebViewController.swift */,
-				1542909CE14CD1528178A9943F0A69B8 /* Pod */,
-				95E3D7FFAC5A2E0345DA6F4D50BCE6CD /* Resources */,
-				F011380B61AEBD68BA8FE690544112F7 /* Support Files */,
+				19B3FD3BE97681C230B03DCF929B5D20 /* WKWebViewController */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		19B3FD3BE97681C230B03DCF929B5D20 /* WKWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A0E48246CB2006EBF1A05E39723D6145 /* Enums.swift */,
+				2388C544CB202BC7B0F623B56DDB5794 /* WKWebViewController.swift */,
+				01B2BD636A8061C8EA9D37C13480A346 /* Pod */,
+				BCB12218F136F42E7CC99F26B8CEDD10 /* Resources */,
+				BCFF131A7F0CD4747EC8DA7ACDCC5F8E /* Support Files */,
 			);
 			name = WKWebViewController;
 			path = ../..;
@@ -119,14 +119,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		95E3D7FFAC5A2E0345DA6F4D50BCE6CD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D044D819F4EE3E22B41FEA75A41A26D4 /* Assets.xcassets */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		A8614ADDDA2C845A05B4D5D16AB12C48 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +133,28 @@
 				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCB12218F136F42E7CC99F26B8CEDD10 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0F1B561BCCDB925E3DA813D913557C56 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BCFF131A7F0CD4747EC8DA7ACDCC5F8E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0900F36F0D9ABC0EAB0A887685B8BCDC /* Info.plist */,
+				5734CDC3A01379BED7416DCADB06764F /* WKWebViewController.modulemap */,
+				EF6C0C2267BBE00F203B00E92A35E41E /* WKWebViewController.xcconfig */,
+				3F5493189B9065BE844032B2B309D32F /* WKWebViewController-dummy.m */,
+				DDF04A4BE6FF90BA1FCB60F479AA350B /* WKWebViewController-prefix.pch */,
+				A4D16D12946D52E609E29DA9D3F029B8 /* WKWebViewController-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Sample/Pods/Target Support Files/WKWebViewController";
 			sourceTree = "<group>";
 		};
 		BF5639CAB18577B4EDAE07E0E34E188C /* Pods-Sample */ = {
@@ -176,20 +190,6 @@
 				C0516BC378285C94F9FC444045CCA0EB /* WKWebViewController.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F011380B61AEBD68BA8FE690544112F7 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				1076F90E0F95EABBE37C87D6E509E4BF /* Info.plist */,
-				17E6742D6415CCE6CCECF09C9CF28372 /* WKWebViewController.modulemap */,
-				BF13E679BFB2D8448502836186D78F89 /* WKWebViewController.xcconfig */,
-				13909CD881012BF14101AB1F94664C00 /* WKWebViewController-dummy.m */,
-				45163A63C863193AD7ACC29F9BD6A2A3 /* WKWebViewController-prefix.pch */,
-				E7986B73E36F500F4A80DC44D41C1495 /* WKWebViewController-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Sample/Pods/Target Support Files/WKWebViewController";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +236,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3646A15EE315CCB73FECDD3AD2D53105 /* Build configuration list for PBXNativeTarget "WKWebViewController" */;
 			buildPhases = (
-				BEA279C6B9EBA12ADA912E8A3011EF25 /* Sources */,
+				479B51777694E70A9D98E31D0F7E0800 /* Sources */,
 				B9FA451659A93EFB082867848B36F790 /* Frameworks */,
 				A164C4F9AA1C7E703CE37E8667AC7A6A /* Resources */,
 				8297FD981198CC0FA43527E7975E746A /* Headers */,
@@ -289,21 +289,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		479B51777694E70A9D98E31D0F7E0800 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49FBB5780A965E370E111283279EC5CE /* Enums.swift in Sources */,
+				86858246DCE0DD8D8769BA302E79CE98 /* WKWebViewController-dummy.m in Sources */,
+				1544837EA344B962B78091B2BFDBD30C /* WKWebViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A265476CEE9C14B38838582F644D236 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				40BEB819422F0F2F167FD8F1D6A06D58 /* Pods-Sample-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BEA279C6B9EBA12ADA912E8A3011EF25 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F4E76F201C6774FD80C5991D74E83A0A /* Enums.swift in Sources */,
-				3341E089D9C454B60960AB3E104089F7 /* WKWebViewController.swift in Sources */,
-				4732DE73843360D8F7932F81BEAC0092 /* WKWebViewController-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +470,7 @@
 		};
 		D965F35EC60316838B492C7142F464A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF13E679BFB2D8448502836186D78F89 /* WKWebViewController.xcconfig */;
+			baseConfigurationReference = EF6C0C2267BBE00F203B00E92A35E41E /* WKWebViewController.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -502,7 +502,7 @@
 		};
 		DCA2E7D92AD3C695D651540EDDE00ED3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF13E679BFB2D8448502836186D78F89 /* WKWebViewController.xcconfig */;
+			baseConfigurationReference = EF6C0C2267BBE00F203B00E92A35E41E /* WKWebViewController.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

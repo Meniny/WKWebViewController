@@ -17,6 +17,10 @@
 
 /* Begin PBXFileReference section */
 		00E1A23AE304E82951A53F23 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
+		5C19E7272014558200E2865A /* WKWebViewController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = WKWebViewController.podspec; path = ../WKWebViewController.podspec; sourceTree = "<group>"; };
+		5C19E7282014558200E2865A /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		5C19E7292014558200E2865A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		5C19E72A2014558200E2865A /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		5C635FAD20138E0F00979833 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C635FB020138E0F00979833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C635FB220138E0F00979833 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +56,10 @@
 		5C635FA420138E0F00979833 = {
 			isa = PBXGroup;
 			children = (
+				5C19E72A2014558200E2865A /* LICENSE.md */,
+				5C19E7282014558200E2865A /* Package.swift */,
+				5C19E7292014558200E2865A /* README.md */,
+				5C19E7272014558200E2865A /* WKWebViewController.podspec */,
 				5C635FAF20138E0F00979833 /* Sample */,
 				5C635FAE20138E0F00979833 /* Products */,
 				04106AF0BD04683BC8B91F91 /* Pods */,
