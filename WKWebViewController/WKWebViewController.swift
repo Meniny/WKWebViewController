@@ -40,6 +40,7 @@ open class WKWebViewController: UIViewController {
 
     open var url: URL?
     open var tintColor: UIColor?
+    open var allowsFileURL = true
     open var delegate: WKWebViewControllerDelegate?
     open var bypassedSSLHosts: [String]?
     open var cookies: [HTTPCookie]?
@@ -537,7 +538,7 @@ extension WKWebViewController: WKNavigationDelegate {
             return
         }
         
-        guard !url.isFileURL else {
+        if !self.allowsFileURL && url.isFileURL {
             print("Cannot handle file URLs")
             return
         }

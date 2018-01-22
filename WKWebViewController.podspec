@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'WKWebViewController'
-  s.version          = "1.0.2"
+  s.version          = "1.0.3"
   s.summary          = "An UIViewController with WKWebView inside."
   s.homepage         = "https://github.com/Meniny/WKWebViewController"
   s.license          = { :type => "MIT", :file => "LICENSE.md" }
