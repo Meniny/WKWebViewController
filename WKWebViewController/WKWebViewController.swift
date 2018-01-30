@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import JustLayout
 
 fileprivate let estimatedProgressKeyPath = "estimatedProgress"
 fileprivate let titleKeyPath = "title"
@@ -37,7 +38,7 @@ open class WKWebViewController: UIViewController {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
     open var url: URL?
     open var tintColor: UIColor?
     open var allowsFileURL = true
@@ -85,7 +86,7 @@ open class WKWebViewController: UIViewController {
     fileprivate var previousToolbarState: (tintColor: UIColor, hidden: Bool) = (.black, false)
     
     lazy fileprivate var originalUserAgent = UIWebView().stringByEvaluatingJavaScript(from: "navigator.userAgent")
-
+    
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
         return UIBarButtonItem(image: UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
@@ -123,7 +124,13 @@ open class WKWebViewController: UIViewController {
         }
     }
     
-    override open func loadView() {
+    //    override open func loadView() {
+    //        super.loadView()
+    //    }
+    
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
         let webConfiguration = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
         
@@ -138,12 +145,8 @@ open class WKWebViewController: UIViewController {
             webView.addObserver(self, forKeyPath: titleKeyPath, options: .new, context: nil)
         }
         
-        view = webView
+        //        view = webView
         self.webView = webView
-    }
-    
-    override open func viewDidLoad() {
-        super.viewDidLoad()
         
         self.webView?.customUserAgent = self.customUserAgent ?? self.userAgent ?? self.originalUserAgent
         
@@ -155,6 +158,7 @@ open class WKWebViewController: UIViewController {
         }
         
         setUpProgressView()
+        setUpConstraints()
         addBarButtonItems()
         
         if let url = url {
@@ -175,7 +179,7 @@ open class WKWebViewController: UIViewController {
         
         rollbackState()
     }
-
+    
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -249,7 +253,7 @@ fileprivate extension WKWebViewController {
         if let cookies = availableCookies, let value = HTTPCookie.requestHeaderFields(with: cookies)[cookieKey] {
             request.addValue(value, forHTTPHeaderField: cookieKey)
         }
-
+        
         return request
     }
     
@@ -257,14 +261,20 @@ fileprivate extension WKWebViewController {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.trackTintColor = UIColor(white: 1, alpha: 0)
         self.progressView = progressView
-        updateProgressViewFrame()
+        //        updateProgressViewFrame()
     }
     
-    func updateProgressViewFrame() {
-        guard let navigationController = navigationController, let progressView = progressView else {
-            return
+    func setUpConstraints() {
+        if let progressView = self.progressView, let web = self.webView {
+            self.view.translates(subViews: progressView, web)
+            self.view.layout(
+                0,
+                |progressView| ~ 2,
+                0,
+                |web|,
+                0
+            )
         }
-        progressView.frame = CGRect(x: 0, y: navigationController.navigationBar.frame.size.height - progressView.frame.size.height, width: navigationController.navigationBar.frame.size.width, height: progressView.frame.size.height)
     }
     
     func addBarButtonItems() {
@@ -334,7 +344,7 @@ fileprivate extension WKWebViewController {
             case self.reloadBarButtonItem:
                 fallthrough
             case self.stopBarButtonItem:
-                    return isLoading ? self.stopBarButtonItem : self.reloadBarButtonItem
+                return isLoading ? self.stopBarButtonItem : self.reloadBarButtonItem
             default:
                 break
             }
@@ -361,21 +371,17 @@ fileprivate extension WKWebViewController {
     func setUpState() {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.setToolbarHidden(toolbarItemTypes.count == 0, animated: true)
-    
+        
         if let tintColor = tintColor {
             progressView?.progressTintColor = tintColor
             navigationController?.navigationBar.tintColor = tintColor
             navigationController?.toolbar.tintColor = tintColor
         }
-    
-        if let progressView = progressView {
-            navigationController?.navigationBar.addSubview(progressView)
-        }
     }
     
     func rollbackState() {
-        progressView?.removeFromSuperview()
-    
+        progressView?.progress = 0
+        
         navigationController?.navigationBar.tintColor = previousNavigationBarState.tintColor
         navigationController?.toolbar.tintColor = previousToolbarState.tintColor
         
@@ -486,7 +492,7 @@ extension WKWebViewController: WKUIDelegate {
 extension WKWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         updateBarButtonItems()
-        updateProgressViewFrame()
+        self.progressView?.progress = 0
         if let url = webView.url {
             self.url = url
             delegate?.webViewController?(self, didStart: url)
@@ -494,7 +500,7 @@ extension WKWebViewController: WKNavigationDelegate {
     }
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         updateBarButtonItems()
-        updateProgressViewFrame()
+        self.progressView?.progress = 0
         if let url = webView.url {
             self.url = url
             delegate?.webViewController?(self, didFinish: url)
@@ -503,7 +509,7 @@ extension WKWebViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         updateBarButtonItems()
-        updateProgressViewFrame()
+        self.progressView?.progress = 0
         if let url = webView.url {
             self.url = url
             delegate?.webViewController?(self, didFail: url, withError: error)
@@ -512,7 +518,7 @@ extension WKWebViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         updateBarButtonItems()
-        updateProgressViewFrame()
+        self.progressView?.progress = 0
         if let url = webView.url {
             self.url = url
             delegate?.webViewController?(self, didFail: url, withError: error)
@@ -542,7 +548,7 @@ extension WKWebViewController: WKNavigationDelegate {
             print("Cannot handle file URLs")
             return
         }
-   
+        
         if handleURLWithApp(url, targetFrame: navigationAction.targetFrame) {
             actionPolicy = .cancel
             return
@@ -553,9 +559,10 @@ extension WKWebViewController: WKNavigationDelegate {
             actionPolicy = .cancel
             return
         }
-
+        
         if let navigationType = NavigationType(rawValue: navigationAction.navigationType.rawValue), let result = delegate?.webViewController?(self, decidePolicy: url, navigationType: navigationType) {
             actionPolicy = result ? .allow : .cancel
         }
     }
 }
+

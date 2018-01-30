@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'WKWebViewController'
-  s.version          = "1.0.3"
+  s.version          = "1.1.0"
   s.summary          = "An UIViewController with WKWebView inside."
   s.homepage         = "https://github.com/Meniny/WKWebViewController"
   s.license          = { :type => "MIT", :file => "LICENSE.md" }
@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.resources        = "WKWebViewController/Assets.xcassets"
   s.requires_arc     = true
   s.ios.deployment_target = "9.0"
-  s.description  = "WKWebViewController is an UIViewController with WKWebView inside."
-  s.module_name = 'WKWebViewController'
+  s.dependency         "JustLayout"
+  s.description      = "WKWebViewController is an UIViewController with WKWebView inside."
+  s.module_name      = 'WKWebViewController'
 end
