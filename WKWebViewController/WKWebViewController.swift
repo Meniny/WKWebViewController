@@ -124,12 +124,11 @@ open class WKWebViewController: UIViewController {
         }
     }
     
-    //    override open func loadView() {
-    //        super.loadView()
-    //    }
-    
     override open func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.edgesForExtendedLayout = [.bottom]
         
         let webConfiguration = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -565,4 +564,3 @@ extension WKWebViewController: WKNavigationDelegate {
         }
     }
 }
-
