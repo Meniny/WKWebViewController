@@ -1,6 +1,6 @@
 PODS:
   - JustLayout (1.2.1)
-  - WKWebViewController (1.1.0):
+  - WKWebViewController (1.1.2):
     - JustLayout
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JustLayout: 3015f2e0d923f20cfa64ebf8830e2288e199486e
-  WKWebViewController: 1db2e9111d3f3e66da41382f3e4bc17db6154618
+  WKWebViewController: e569f174fb9c9cac8bb481a342953e1c97215ac6
 
 PODFILE CHECKSUM: 062c96d656d3cc60990854068817a19657ddbf24
 
