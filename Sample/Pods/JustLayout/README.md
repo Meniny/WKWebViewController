@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://i.loli.net/2018/01/05/5a4f153d36a21.png" alt="JustLayout">
   <br/><a href="https://cocoapods.org/pods/JustLayout">
-  <img alt="Version" src="https://img.shields.io/badge/version-1.2.1-brightgreen.svg">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.3.0-brightgreen.svg">
   <img alt="Author" src="https://img.shields.io/badge/author-Meniny-blue.svg">
   <img alt="Build Passing" src="https://img.shields.io/badge/build-passing-brightgreen.svg">
   <img alt="Swift" src="https://img.shields.io/badge/swift-4.0%2B-orange.svg">

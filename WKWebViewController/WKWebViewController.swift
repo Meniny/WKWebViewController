@@ -39,7 +39,8 @@ open class WKWebViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    open var url: URL?
+    open var source: WKWebSource?
+    internal var url: URL?
     open var tintColor: UIColor?
     open var allowsFileURL = true
     open var delegate: WKWebViewControllerDelegate?
@@ -151,21 +152,21 @@ open class WKWebViewController: UIViewController {
         
         self.webView?.customUserAgent = self.customUserAgent ?? self.userAgent ?? self.originalUserAgent
         
-        navigationItem.title = navigationItem.title ?? url?.absoluteString
+        self.navigationItem.title = self.navigationItem.title ?? self.source?.absoluteString
         
-        if let navigationController = navigationController {
-            previousNavigationBarState = (navigationController.navigationBar.tintColor, navigationController.navigationBar.isHidden)
-            previousToolbarState = (navigationController.toolbar.tintColor, navigationController.toolbar.isHidden)
+        if let navigation = self.navigationController {
+            self.previousNavigationBarState = (navigation.navigationBar.tintColor, navigation.navigationBar.isHidden)
+            self.previousToolbarState = (navigation.toolbar.tintColor, navigation.toolbar.isHidden)
         }
         
-        setUpProgressView()
-        setUpConstraints()
-        addBarButtonItems()
+        self.setUpProgressView()
+        self.setUpConstraints()
+        self.addBarButtonItems()
         
-        if let url = url {
-            load(url)
+        if let s = self.source {
+            self.load(source: s)
         } else {
-            print("[\(type(of: self))][Error] Invalid url:", url as Any)
+            print("[\(type(of: self))][Error] Invalid url")
         }
     }
     
@@ -189,11 +190,11 @@ open class WKWebViewController: UIViewController {
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         switch keyPath {
         case estimatedProgressKeyPath?:
-            guard let estimatedProgress = webView?.estimatedProgress else {
+            guard let estimatedProgress = self.webView?.estimatedProgress else {
                 return
             }
-            progressView?.alpha = 1
-            progressView?.setProgress(Float(estimatedProgress), animated: true)
+            self.progressView?.alpha = 1
+            self.progressView?.setProgress(Float(estimatedProgress), animated: true)
             
             if estimatedProgress >= 1.0 {
                 UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: {
@@ -213,8 +214,28 @@ open class WKWebViewController: UIViewController {
 
 // MARK: - Public Methods
 public extension WKWebViewController {
-    func load(_ url: URL) {
-        webView?.load(createRequest(url: url))
+    
+    func load(source s: WKWebSource) {
+        switch s {
+        case .remote(let url):
+            self.load(remote: url)
+        case .file(let url, access: let access):
+            self.load(file: url, access: access)
+        case .string(let str, base: let base):
+            self.load(string: str, base: base)
+        }
+    }
+    
+    func load(remote: URL) {
+        webView?.load(createRequest(url: remote))
+    }
+    
+    func load(file: URL, access: URL) {
+        webView?.loadFileURL(file, allowingReadAccessTo: access)
+    }
+    
+    func load(string: String, base: URL? = nil) {
+        webView?.loadHTMLString(string, baseURL: base)
     }
     
     func goBackToFirstPage() {
@@ -230,6 +251,7 @@ fileprivate extension WKWebViewController {
         return cookies?.filter {
             cookie in
             var result = true
+            let url = self.source?.remoteURL
             if let host = url?.host, !cookie.domain.hasSuffix(host) {
                 result = false
             }
@@ -454,9 +476,8 @@ fileprivate extension WKWebViewController {
         webView?.stopLoading()
         if webView?.url != nil {
             webView?.reload()
-        }
-        else if let url = url {
-            load(url)
+        } else if let s = self.source {
+            self.load(source: s)
         }
     }
     
@@ -465,17 +486,27 @@ fileprivate extension WKWebViewController {
     }
     
     @objc func activityDidClick(sender: AnyObject) {
-        guard let url = url else {
+        guard let s = self.source else {
             return
         }
         
-        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        let items: [Any]
+        switch s {
+        case .remote(let u):
+            items = [u]
+        case .file(let u, access: _):
+            items = [u]
+        case .string(let str, base: _):
+            items = [str]
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
     
     @objc func doneDidClick(sender: AnyObject) {
         var canDismiss = true
-        if let url = url {
+        if let url = self.source?.url {
             canDismiss = delegate?.webViewController?(self, canDismiss: url) ?? true
         }
         if canDismiss {
@@ -494,9 +525,9 @@ extension WKWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         updateBarButtonItems()
         self.progressView?.progress = 0
-        if let url = webView.url {
-            self.url = url
-            delegate?.webViewController?(self, didStart: url)
+        if let u = webView.url {
+            self.url = u
+            delegate?.webViewController?(self, didStart: u)
         }
     }
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -540,28 +571,28 @@ extension WKWebViewController: WKNavigationDelegate {
         defer {
             decisionHandler(actionPolicy)
         }
-        guard let url = navigationAction.request.url else {
+        guard let u = navigationAction.request.url else {
             print("Cannot handle empty URLs")
             return
         }
         
-        if !self.allowsFileURL && url.isFileURL {
+        if !self.allowsFileURL && u.isFileURL {
             print("Cannot handle file URLs")
             return
         }
         
-        if handleURLWithApp(url, targetFrame: navigationAction.targetFrame) {
+        if handleURLWithApp(u, targetFrame: navigationAction.targetFrame) {
             actionPolicy = .cancel
             return
         }
         
-        if url.host == self.url?.host, let cookies = availableCookies, !checkRequestCookies(navigationAction.request, cookies: cookies) {
-            load(url)
+        if u.host == self.source?.url?.host, let cookies = availableCookies, !checkRequestCookies(navigationAction.request, cookies: cookies) {
+            self.load(remote: u)
             actionPolicy = .cancel
             return
         }
         
-        if let navigationType = NavigationType(rawValue: navigationAction.navigationType.rawValue), let result = delegate?.webViewController?(self, decidePolicy: url, navigationType: navigationType) {
+        if let navigationType = NavigationType(rawValue: navigationAction.navigationType.rawValue), let result = delegate?.webViewController?(self, decidePolicy: u, navigationType: navigationType) {
             actionPolicy = result ? .allow : .cancel
         }
     }

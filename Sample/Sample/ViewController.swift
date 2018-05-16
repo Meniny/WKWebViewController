@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     @IBAction func presentWeb(_ sender: UIButton) {
         let webViewController = WKWebViewController.init()
-        webViewController.url = url
+        webViewController.source = .remote(url)
         webViewController.bypassedSSLHosts = [url.host!]
         webViewController.userAgent = "WKWebViewController/1.0.0"
         webViewController.websiteTitleInNavigationBar = false
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     
     @IBAction func showWeb(_ sender: UIButton) {
         let webViewController = WKWebViewController.init()
-        webViewController.url = url
+        webViewController.source = .remote(url)
         webViewController.headers = ["browser": "in-app browser"]
         webViewController.tintColor = .red
         webViewController.cookies = [

@@ -8,7 +8,36 @@
 
 import Foundation
 
-public enum BarButtonItemType {
+public enum WKWebSource: Equatable {
+    case remote(URL)
+    case file(URL, access: URL)
+    case string(String, base: URL?)
+    
+    public var url: URL? {
+        switch self {
+        case .remote(let u): return u
+        case .file(let u, access: _): return u
+        default: return nil
+        }
+    }
+    
+    public var remoteURL: URL? {
+        switch self {
+        case .remote(let u): return u
+        default: return nil
+        }
+    }
+    
+    public var absoluteString: String? {
+        switch self {
+        case .remote(let u): return u.absoluteString
+        case .file(let u, access: _): return u.absoluteString
+        default: return nil
+        }
+    }
+}
+
+public enum BarButtonItemType: String, Equatable, Codable {
     case back
     case forward
     case reload
@@ -18,13 +47,13 @@ public enum BarButtonItemType {
     case flexibleSpace
 }
 
-public enum NavigationBarPosition {
+public enum NavigationBarPosition: String, Equatable, Codable {
     case none
     case left
     case right
 }
 
-@objc public enum NavigationType: Int {
+@objc public enum NavigationType: Int, Equatable, Codable {
     case linkActivated
     case formSubmitted
     case backForward
