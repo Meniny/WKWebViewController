@@ -4,7 +4,7 @@
 :mail: admin@meniny.cn
 :desc: an UIViewController with WKWebView inside
 :icon: {name}.png
-:version: 1.0.0
+:version: 1.2.1
 :na: N/A
 :ios: 9.0
 :macos: {na}

@@ -39,8 +39,19 @@ open class WKWebViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    public init(source: WKWebSource?) {
+        super.init(nibName: nil, bundle: nil)
+        self.source = source
+    }
+    
+    public init(url: URL) {
+        super.init(nibName: nil, bundle: nil)
+        self.source = .remote(url)
+    }
+    
     open var source: WKWebSource?
-    internal var url: URL?
+    /// use `source` instead
+    open internal(set) var url: URL?
     open var tintColor: UIColor?
     open var allowsFileURL = true
     open var delegate: WKWebViewControllerDelegate?
