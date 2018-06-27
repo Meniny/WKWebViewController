@@ -315,24 +315,56 @@ fileprivate extension WKWebViewController {
     }
     
     func addBarButtonItems() {
-        let barButtonItems: [BarButtonItemType: UIBarButtonItem] = [
-            .back: backBarButtonItem,
-            .forward: forwardBarButtonItem,
-            .reload: reloadBarButtonItem,
-            .stop: stopBarButtonItem,
-            .activity: activityBarButtonItem,
-            .done: doneBarButtonItem,
-            .flexibleSpace: flexibleSpaceBarButtonItem
-        ]
+        func barButtonItem(_ type: BarButtonItemType) -> UIBarButtonItem? {
+            switch type {
+            case .back:
+                return backBarButtonItem
+            case .forward:
+                return forwardBarButtonItem
+            case .reload:
+                return reloadBarButtonItem
+            case .stop:
+                return stopBarButtonItem
+            case .activity:
+                return activityBarButtonItem
+            case .done:
+                return doneBarButtonItem
+            case .flexibleSpace:
+                return flexibleSpaceBarButtonItem
+            case .custom(let icon, let title, let action):
+                let item: BlockBarButtonItem
+                if let icon = icon {
+                    item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                } else {
+                    item = BlockBarButtonItem(title: title, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                }
+                item.block = action
+                return item
+            }
+        }
         
         if presentingViewController != nil {
             switch doneBarButtonItemPosition {
             case .left:
-                if !leftNavigaionBarItemTypes.contains(.done) {
+                if !leftNavigaionBarItemTypes.contains(where: { type in
+                    switch type {
+                    case .done:
+                        return true
+                    default:
+                        return false
+                    }
+                }) {
                     leftNavigaionBarItemTypes.insert(.done, at: 0)
                 }
             case .right:
-                if !rightNavigaionBarItemTypes.contains(.done) {
+                if !rightNavigaionBarItemTypes.contains(where: { type in
+                    switch type {
+                    case .done:
+                        return true
+                    default:
+                        return false
+                    }
+                }) {
                     rightNavigaionBarItemTypes.insert(.done, at: 0)
                 }
             case .none:
@@ -342,7 +374,7 @@ fileprivate extension WKWebViewController {
         
         navigationItem.leftBarButtonItems = leftNavigaionBarItemTypes.map {
             barButtonItemType in
-            if let barButtonItem = barButtonItems[barButtonItemType] {
+            if let barButtonItem = barButtonItem(barButtonItemType) {
                 return barButtonItem
             }
             return UIBarButtonItem()
@@ -350,7 +382,7 @@ fileprivate extension WKWebViewController {
         
         navigationItem.rightBarButtonItems = rightNavigaionBarItemTypes.map {
             barButtonItemType in
-            if let barButtonItem = barButtonItems[barButtonItemType] {
+            if let barButtonItem = barButtonItem(barButtonItemType) {
                 return barButtonItem
             }
             return UIBarButtonItem()
@@ -364,7 +396,7 @@ fileprivate extension WKWebViewController {
         
         setToolbarItems(toolbarItemTypes.map {
             barButtonItemType -> UIBarButtonItem in
-            if let barButtonItem = barButtonItems[barButtonItemType] {
+            if let barButtonItem = barButtonItem(barButtonItemType) {
                 return barButtonItem
             }
             return UIBarButtonItem()
@@ -527,6 +559,10 @@ fileprivate extension WKWebViewController {
             dismiss(animated: true, completion: nil)
         }
     }
+    
+    @objc func customDidClick(sender: BlockBarButtonItem) {
+        sender.block?(self)
+    }
 }
 
 // MARK: - WKUIDelegate
@@ -610,4 +646,9 @@ extension WKWebViewController: WKNavigationDelegate {
             actionPolicy = result ? .allow : .cancel
         }
     }
+}
+
+class BlockBarButtonItem: UIBarButtonItem {
+    
+    var block: ((WKWebViewController) -> Void)?
 }
