@@ -91,6 +91,9 @@ open class WKWebViewController: UIViewController {
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
     open var toolbarItemTypes: [BarButtonItemType] = [.back, .forward, .reload, .activity]
     
+    open var backBarButtonItemImage: UIImage?
+    open var forwardBarButtonItemImage: UIImage?
+
     fileprivate var webView: WKWebView?
     fileprivate var progressView: UIProgressView?
     
@@ -101,12 +104,12 @@ open class WKWebViewController: UIViewController {
     
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        return UIBarButtonItem(image: UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
+        return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
     }()
     
     lazy fileprivate var forwardBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        return UIBarButtonItem(image: UIImage(named: "Forward", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(forwardDidClick(sender:)))
+        return UIBarButtonItem(image: forwardBarButtonItemImage ?? UIImage(named: "Forward", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(forwardDidClick(sender:)))
     }()
     
     lazy fileprivate var reloadBarButtonItem: UIBarButtonItem = {
