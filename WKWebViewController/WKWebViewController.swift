@@ -93,6 +93,9 @@ open class WKWebViewController: UIViewController {
     
     open var backBarButtonItemImage: UIImage?
     open var forwardBarButtonItemImage: UIImage?
+    open var reloadBarButtonItemImage: UIImage?
+    open var stopBarButtonItemImage: UIImage?
+    open var activityBarButtonItemImage: UIImage?
 
     fileprivate var webView: WKWebView?
     fileprivate var progressView: UIProgressView?
@@ -113,15 +116,27 @@ open class WKWebViewController: UIViewController {
     }()
     
     lazy fileprivate var reloadBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadDidClick(sender:)))
+        if let image = reloadBarButtonItemImage {
+            return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(reloadDidClick(sender:)))
+        } else {
+            return UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var stopBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopDidClick(sender:)))
+        if let image = stopBarButtonItemImage {
+            return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(stopDidClick(sender:)))
+        } else {
+            return UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var activityBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(activityDidClick(sender:)))
+        if let image = activityBarButtonItemImage {
+            return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(activityDidClick(sender:)))
+        } else {
+            return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(activityDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
