@@ -86,6 +86,12 @@ Copy all files in the `{name}` directory into your project.
 
 You are welcome to fork and submit pull requests.
 
+=== Thanks
+
+Thanks to all the contributors 🎉:
+
+* [@cathandnya](https://github.com/cathandnya)
+
 == 🔖 License
 
 `{name}` is open-sourced software, licensed under the link:./LICENSE.md[`{license}`] license.
