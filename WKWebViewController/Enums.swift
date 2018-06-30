@@ -37,7 +37,7 @@ public enum WKWebSource: Equatable {
     }
 }
 
-public enum BarButtonItemType: String, Equatable, Codable {
+public enum BarButtonItemType {
     case back
     case forward
     case reload
@@ -45,6 +45,7 @@ public enum BarButtonItemType: String, Equatable, Codable {
     case activity
     case done
     case flexibleSpace
+    case custom(icon: UIImage?, title: String?, action: (WKWebViewController) -> Void)
 }
 
 public enum NavigationBarPosition: String, Equatable, Codable {

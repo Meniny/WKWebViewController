@@ -91,6 +91,12 @@ open class WKWebViewController: UIViewController {
     open var rightNavigaionBarItemTypes: [BarButtonItemType] = []
     open var toolbarItemTypes: [BarButtonItemType] = [.back, .forward, .reload, .activity]
     
+    open var backBarButtonItemImage: UIImage?
+    open var forwardBarButtonItemImage: UIImage?
+    open var reloadBarButtonItemImage: UIImage?
+    open var stopBarButtonItemImage: UIImage?
+    open var activityBarButtonItemImage: UIImage?
+
     fileprivate var webView: WKWebView?
     fileprivate var progressView: UIProgressView?
     
@@ -101,24 +107,36 @@ open class WKWebViewController: UIViewController {
     
     lazy fileprivate var backBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        return UIBarButtonItem(image: UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
+        return UIBarButtonItem(image: backBarButtonItemImage ?? UIImage(named: "Back", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(backDidClick(sender:)))
     }()
     
     lazy fileprivate var forwardBarButtonItem: UIBarButtonItem = {
         let bundle = Bundle(for: WKWebViewController.self)
-        return UIBarButtonItem(image: UIImage(named: "Forward", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(forwardDidClick(sender:)))
+        return UIBarButtonItem(image: forwardBarButtonItemImage ?? UIImage(named: "Forward", in: bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(forwardDidClick(sender:)))
     }()
     
     lazy fileprivate var reloadBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadDidClick(sender:)))
+        if let image = reloadBarButtonItemImage {
+            return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(reloadDidClick(sender:)))
+        } else {
+            return UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var stopBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopDidClick(sender:)))
+        if let image = stopBarButtonItemImage {
+            return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(stopDidClick(sender:)))
+        } else {
+            return UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var activityBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(activityDidClick(sender:)))
+        if let image = activityBarButtonItemImage {
+            return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(activityDidClick(sender:)))
+        } else {
+            return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(activityDidClick(sender:)))
+        }
     }()
     
     lazy fileprivate var doneBarButtonItem: UIBarButtonItem = {
@@ -312,24 +330,56 @@ fileprivate extension WKWebViewController {
     }
     
     func addBarButtonItems() {
-        let barButtonItems: [BarButtonItemType: UIBarButtonItem] = [
-            .back: backBarButtonItem,
-            .forward: forwardBarButtonItem,
-            .reload: reloadBarButtonItem,
-            .stop: stopBarButtonItem,
-            .activity: activityBarButtonItem,
-            .done: doneBarButtonItem,
-            .flexibleSpace: flexibleSpaceBarButtonItem
-        ]
+        func barButtonItem(_ type: BarButtonItemType) -> UIBarButtonItem? {
+            switch type {
+            case .back:
+                return backBarButtonItem
+            case .forward:
+                return forwardBarButtonItem
+            case .reload:
+                return reloadBarButtonItem
+            case .stop:
+                return stopBarButtonItem
+            case .activity:
+                return activityBarButtonItem
+            case .done:
+                return doneBarButtonItem
+            case .flexibleSpace:
+                return flexibleSpaceBarButtonItem
+            case .custom(let icon, let title, let action):
+                let item: BlockBarButtonItem
+                if let icon = icon {
+                    item = BlockBarButtonItem(image: icon, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                } else {
+                    item = BlockBarButtonItem(title: title, style: .plain, target: self, action: #selector(customDidClick(sender:)))
+                }
+                item.block = action
+                return item
+            }
+        }
         
         if presentingViewController != nil {
             switch doneBarButtonItemPosition {
             case .left:
-                if !leftNavigaionBarItemTypes.contains(.done) {
+                if !leftNavigaionBarItemTypes.contains(where: { type in
+                    switch type {
+                    case .done:
+                        return true
+                    default:
+                        return false
+                    }
+                }) {
                     leftNavigaionBarItemTypes.insert(.done, at: 0)
                 }
             case .right:
-                if !rightNavigaionBarItemTypes.contains(.done) {
+                if !rightNavigaionBarItemTypes.contains(where: { type in
+                    switch type {
+                    case .done:
+                        return true
+                    default:
+                        return false
+                    }
+                }) {
                     rightNavigaionBarItemTypes.insert(.done, at: 0)
                 }
             case .none:
@@ -339,7 +389,7 @@ fileprivate extension WKWebViewController {
         
         navigationItem.leftBarButtonItems = leftNavigaionBarItemTypes.map {
             barButtonItemType in
-            if let barButtonItem = barButtonItems[barButtonItemType] {
+            if let barButtonItem = barButtonItem(barButtonItemType) {
                 return barButtonItem
             }
             return UIBarButtonItem()
@@ -347,7 +397,7 @@ fileprivate extension WKWebViewController {
         
         navigationItem.rightBarButtonItems = rightNavigaionBarItemTypes.map {
             barButtonItemType in
-            if let barButtonItem = barButtonItems[barButtonItemType] {
+            if let barButtonItem = barButtonItem(barButtonItemType) {
                 return barButtonItem
             }
             return UIBarButtonItem()
@@ -361,7 +411,7 @@ fileprivate extension WKWebViewController {
         
         setToolbarItems(toolbarItemTypes.map {
             barButtonItemType -> UIBarButtonItem in
-            if let barButtonItem = barButtonItems[barButtonItemType] {
+            if let barButtonItem = barButtonItem(barButtonItemType) {
                 return barButtonItem
             }
             return UIBarButtonItem()
@@ -524,6 +574,10 @@ fileprivate extension WKWebViewController {
             dismiss(animated: true, completion: nil)
         }
     }
+    
+    @objc func customDidClick(sender: BlockBarButtonItem) {
+        sender.block?(self)
+    }
 }
 
 // MARK: - WKUIDelegate
@@ -607,4 +661,9 @@ extension WKWebViewController: WKNavigationDelegate {
             actionPolicy = result ? .allow : .cancel
         }
     }
+}
+
+class BlockBarButtonItem: UIBarButtonItem {
+    
+    var block: ((WKWebViewController) -> Void)?
 }
