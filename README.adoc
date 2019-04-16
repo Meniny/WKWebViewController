@@ -4,7 +4,7 @@
 :mail: admin@meniny.cn
 :desc: an UIViewController with WKWebView inside
 :icon: {name}.png
-:version: 1.2.2
+:version: 1.3.0
 :na: N/A
 :ios: 9.0
 :macos: {na}
@@ -12,13 +12,13 @@
 :tvos: {na}
 :linux: {na}
 :xcode: 9.3
-:swift: 4.1
+:swift: 5
 :license: MIT
 :sep: %20%7C%20
 :platform: iOS
 = Meet `{name}`
 {author} <{mail}>
-v{version}, 2018-06-30
+v{version}, 2019-04-16
 
 [subs="attributes"]
 ++++
